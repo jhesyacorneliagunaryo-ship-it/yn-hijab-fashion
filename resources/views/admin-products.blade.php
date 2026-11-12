@@ -3,274 +3,207 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Daftar Produk | Yn Hijab Fashion</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Produk - Yn Hijab Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            box-sizing: border-box;
-        }
-
+        * { box-sizing: border-box; }
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            color: #573b46;
-            background: #fff6f7;
+            background: #fff5f3;
+            color: #302323;
+            font-family: 'DM Sans', sans-serif;
         }
-
-        .navbar {
-            background: #ffb8c1;
-            padding: 22px 5%;
+        header {
+            padding: 20px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 14px;
+            flex-wrap: wrap;
+            background: #fffdfb;
+            border-bottom: 1px solid #f0d9d5;
         }
-
-        .navbar h2 {
-            margin: 0;
-            color: #633746;
-        }
-
-        .navbar a {
-            color: #633746;
-            text-decoration: none;
-            font-weight: bold;
-            margin-left: 18px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 35px auto;
-            padding: 0 22px;
-        }
-
-        .heading {
+        .logo { font: 700 25px 'Playfair Display', serif; }
+        header a { color: #493332; text-decoration: none; font-size: 14px; }
+        main { max-width: 1100px; margin: 42px auto; padding: 0 22px; }
+        .eyebrow { letter-spacing: 4px; font-size: 11px; }
+        h1 { font: 700 clamp(34px, 5vw, 50px) 'Playfair Display', serif; margin: 12px 0; }
+        .intro { color: #796664; line-height: 1.8; }
+        .toolbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
             gap: 15px;
-            margin-bottom: 25px;
+            flex-wrap: wrap;
+            margin: 28px 0;
         }
-
-        .heading h1 {
-            margin-bottom: 5px;
-        }
-
-        .heading p {
-            color: #997682;
-            margin-top: 0;
-        }
-
         .btn {
-            display: inline-block;
-            padding: 12px 18px;
-            border: none;
-            border-radius: 10px;
-            background: #d87591;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    display: inline-block;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 30px;
+    background: #D8A0A6;
+    color: #38272A;
+    text-decoration: none;
+    font: 600 14px 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
 
-        .btn-delete {
-            background: #fff0f2;
-            color: #b94360;
-            border: 1px solid #f2c5cf;
-        }
+.btn:hover {
+    background: #C98791;
+    color: #FFFFFF;
+}
 
-        .success {
-            background: #e7f7e9;
-            color: #286638;
-            padding: 14px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
+.btn-light {
+    background: #F3E1E1;
+}
+        .btn-light { background: #f6e6e2; }
+        .count { color: #796664; font-size: 14px; }
+ .success {
+    padding: 15px 18px;
+    background: #F8E6E7;
+    color: #89515A;
+    border: 1px solid #EAC9CD;
+    border-radius: 12px;
+    margin: 20px 0;
+}
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
         }
-
         .product {
-            background: white;
-            border: 1px solid #f3dfe4;
-            border-radius: 17px;
+            min-width: 0;
             overflow: hidden;
-            box-shadow: 0 5px 18px #eddde2;
+            background: #fffdfb;
+            border: 1px solid #efdbd7;
+            border-radius: 18px;
         }
-
-        .product img,
-        .no-image {
+        .product img, .no-image {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffe2e7;
-            color: #ad7585;
+            display: block;
+            background: #f5dedb;
         }
-
-        .product-content {
-            padding: 18px;
+        .no-image {
+            display: grid;
+            place-items: center;
+            color: #927d79;
         }
+        .details { padding: 20px; }
+        .category { font-size: 10px; letter-spacing: 2px; color: #a36d68; }
+        h2 { font: 600 24px 'Playfair Display', serif; margin: 9px 0; overflow-wrap: anywhere; }
+        .description { color: #796664; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+        .price { font-weight: 700; margin: 14px 0; }
+        .actions { display: flex; gap: 9px; flex-wrap: wrap; }
+        .delete {
+    background: #F3DADB;
+    color: #963F50;
+}
 
-        .category {
-            display: inline-block;
-            padding: 5px 10px;
-            background: #ffedf1;
-            color: #b65f7b;
-            border-radius: 20px;
-            font-size: 12px;
-        }
-
-        .product h3 {
-            margin: 12px 0 7px;
-        }
-
-        .price {
-            color: #c65e80;
-            font-size: 19px;
-            font-weight: bold;
-        }
-
-        .description {
-            color: #8c737d;
-            overflow-wrap: anywhere;
-        }
-
-        .actions {
-            margin-top: 16px;
-        }
-
+.delete:hover {
+    background: #E8BFC4;
+    color: #71303C;
+}
+        .delete-form { margin: 0; }
         .empty {
-            text-align: center;
-            padding: 45px 20px;
-            background: white;
-            border-radius: 16px;
             grid-column: 1 / -1;
-        }
-
-        footer {
+            padding: 55px 20px;
             text-align: center;
-            padding: 25px;
-            color: #997682;
+            border: 1px dashed #dfbbb5;
+            border-radius: 18px;
+            background: #fffdfb;
         }
-
-        @media (max-width: 500px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .navbar a {
-                margin-left: 0;
-                margin-right: 12px;
-            }
+        .empty h2 { font-size: 30px; }
+        footer { padding: 30px; text-align: center; color: #927d79; font-size: 12px; }
+        @media(max-width: 800px) {
+            .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media(max-width: 520px) {
+            .products { grid-template-columns: 1fr; }
+            .product img, .no-image { height: 250px; }
         }
     </style>
 </head>
-
 <body>
-
-<header class="navbar">
-    <h2>Yn Hijab Fashion</h2>
-    <nav>
-        <a href="/admin/profiles">Konten Profil</a>
-        <a href="/admin/products">Produk</a>
-    </nav>
+<header>
+    <div class="logo">Yn Hijab Fashion</div>
+    <a href="/admin/dashboard">← Kembali ke Dashboard</a>
 </header>
 
-<main class="container">
+<main>
+    <div class="eyebrow">ADMIN COLLECTION</div>
+    <h1>Kelola Produk.</h1>
+    <p class="intro">Atur koleksi fashion yang tampil di halaman pengunjung.</p>
 
-    <div class="heading">
-        <div>
-            <h1>Daftar Produk</h1>
-            <p>Kelola koleksi fashion hijab kamu di sini.</p>
-        </div>
-
-        <a class="btn" href="/admin/products/create">
-            + Tambah Produk
-        </a>
-    </div>
-
-    @if (session('success'))
+    @if(session('success'))
         <div class="success">{{ session('success') }}</div>
     @endif
 
-    <section class="products">
-        @forelse ($products as $product)
-            <article class="product">
+    @if($errors->any())
+        <div class="success" style="background:#fff0ef;color:#9b3737">
+            Ada data yang perlu diperiksa. Silakan coba lagi.
+        </div>
+    @endif
 
-                @if ($product->image)
+    <div class="toolbar">
+        <span class="count">Total {{ $products->count() }} produk</span>
+        <a class="btn" href="/admin/products/create">+ Tambah Produk</a>
+    </div>
+
+    <div class="products">
+        @forelse($products as $product)
+            <article class="product">
+                @if($product->image)
                     <img
                         src="{{ asset('storage/' . $product->image) }}"
                         alt="{{ $product->name }}"
-                    >
+                        loading="lazy">
                 @else
-                    <div class="no-image">Foto belum tersedia</div>
+                    <div class="no-image">Belum ada foto produk</div>
                 @endif
 
-                <div class="product-content">
+                <div class="details">
+                    <div class="category">
+                        {{ $product->category ?: 'YN COLLECTION' }}
+                    </div>
 
-                    @if ($product->category)
-                        <span class="category">
-                            {{ $product->category }}
-                        </span>
-                    @endif
+                    <h2>{{ $product->name }}</h2>
 
-                    <h3>{{ $product->name }}</h3>
+                    <p class="description">
+                        {{ $product->description ?: 'Belum ada deskripsi produk.' }}
+                    </p>
 
                     <div class="price">
                         Rp {{ number_format((float) $product->price, 0, ',', '.') }}
                     </div>
 
-                    @if ($product->description)
-                        <p class="description">
-                            {{ $product->description }}
-                        </p>
-                    @endif
-
                     <div class="actions">
-                        <form
-                            action="/admin/products/{{ $product->id }}"
-                            method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus produk ini?')"
-                        >
+                        <form class="delete-form"
+                              action="/admin/products/{{ $product->id }}"
+                              method="POST"
+                              onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                             @csrf
                             @method('DELETE')
-
-                            <button class="btn btn-delete" type="submit">
-                                Hapus Produk
-                            </button>
+                            <button type="submit" class="btn delete">Hapus</button>
                         </form>
                     </div>
-
                 </div>
             </article>
         @empty
             <div class="empty">
-                <h3>Belum Ada Produk</h3>
-                <p>Yuk, tambahkan produk pertamamu!</p>
-                <a class="btn" href="/admin/products/create">
-                    Tambah Produk
-                </a>
+                <div style="font-size:38px">♡</div>
+                <h2>Belum Ada Produk</h2>
+                <p class="intro">Yuk, tambahkan koleksi pertama Yn Hijab Fashion!</p>
+                <a class="btn" href="/admin/products/create">+ Tambah Produk</a>
             </div>
-
-            
         @endforelse
-    </section>
-
+    </div>
 </main>
 
-<footer>
-    &copy; {{ date('Y') }} Yn Hijab Fashion
-</footer>
-
+<footer>© {{ date('Y') }} Yn Hijab Fashion</footer>
 </body>
 </html>

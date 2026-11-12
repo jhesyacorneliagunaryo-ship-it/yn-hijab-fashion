@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Product;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function catalog()
+    {
+        $products = Product::latest()->get();
+        $profiles = Profile::latest()->get();
 
-
-public function catalog()
-{
-    $products = \App\Models\Product::latest()->get();
-
-    return view('home', compact('products'));
-}
+        return view('home', compact('products', 'profiles'));
+    }
 
     public function index()
     {
@@ -32,7 +31,7 @@ public function catalog()
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric|min:0',
@@ -41,11 +40,11 @@ public function catalog()
         ]);
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')
+            $validated['image'] = $request->file('image')
                 ->store('products', 'public');
         }
 
-        Product::create($data);
+        Product::create($validated);
 
         return redirect('/admin/products')
             ->with('success', 'Produk berhasil ditambahkan!');
@@ -62,4 +61,10 @@ public function catalog()
         return redirect('/admin/products')
             ->with('success', 'Produk berhasil dihapus!');
     }
+    public function collection()
+{
+    $products = Product::latest()->get();
+
+    return view('collection', compact('products'));
+}
 }
